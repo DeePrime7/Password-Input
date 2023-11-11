@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 99%;
+    }
+    .container{
+        text-align: center;
+
+    }
+    p{
+        color: white;
+        font-family: Arial;
+    }
+    h3{
+        color: grey;
+        text-align: left;
+    }
+    button{
+        margin-top: 30px;
+    }
+    #warn{
+        font-style: italic;
+        color:red;
+    }
+    img{
+        width: 50px;
+    }
+    #eye1, #eye2{
+        bottom: 0%;
+    }
+    .line{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 20px;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Enter Password</h3><br/>
+        <div class="line">
+            <input type="password" id="input1" oninput="check()" required>
+            <img id="eye1" onclick="change()" src="eye close.png" ><br/>
+
+        </div>
+        <h3>Confirm Password</h3>
+        <div class="line">
+            <input type="password" id="input2" oninput="check()" required>
+            <img id="eye2" onclick="change()" src="eye close.png" ><br/>
+
+        </div>
+        <p id="warn"></p>
+        <button onclick="action()">Submit</button>
+    </div>
+
+
+
+     
+    <script>
+        // let capitals = ["A", "B" , "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", Z]
+
+        // let small_letters = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, w, x, y, z]
+
+        // let special_characters = ["", "", ""]
+
+        function check() {
+            if (document.getElementById("input1").value.length < 3 ||
+                document.getElementById("input2").value.length < 3) {
+
+                document.getElementById("warn").innerHTML = "Very Weak"
+                document.getElementById("warn").style.color = "red"
+
+            } else if(document.getElementById("input1").value.length < 6 ||
+                    document.getElementById("input2").value.length < 6){
+
+                document.getElementById("warn").innerHTML = "Weak"
+                document.getElementById("warn").style.color = "Blue"
+            }
+
+            console.log("I am good")
+        }
+
+        let x = 0
+
+        function change() {
+            x +=1
+            if (x / 2 !== 0) {
+                document.getElementById("input1").type  = "text" 
+                document.getElementById("eye1").src = "eye open.png";
+                document.getElementById("input2").type  = "text" 
+                document.getElementById("eye2").src = "eye open.png";
+
+            }else if(x / 2 == 0){
+                document.getElementById("input1").type  = "password" 
+                document.getElementById("eye1").src = "eye close.png";
+                document.getElementById("input2").type  = "password" 
+                document.getElementById("eye2").src = "eye close.png";
+            }
+        }
+
+
+        function action() {
+
+            let password1 = document.getElementById("input1").value
+
+            let password2 = document.getElementById("input2").value
+
+            if (password1 !== password2) {
+                document.getElementById("warn").innerHTML = "*This passwords are not thesame"
+            }else if(password1 == "" && password2 == ""){
+                document.getElementById("warn").innerHTML = "*No password is inputed"
+            }else{
+                alert("You have succefully submited your CV")
+                document.getElementById("warn").innerHTML = ""
+            }
+
+
+        }
+        
+    </script>
+</body>
+</html>
+
+
+<!-- Create a password space people to come up with a password and be asked to answer it 
+
+text = document.getElementById("p01").innerHTML; 
+document.getElementById("demo").innerHTML = /E/.test(text);-->
